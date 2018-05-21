@@ -20,6 +20,10 @@ module ExpenseTracker
       post "/expenses", JSON.generate(coffee)
 
       expect(last_response.status).to eq(200)
+
+      response = JSON.parse last_response.body
+
+      expect(response).to include("expense_id" => a_kind_of(Integer))
     end
   end
 end
