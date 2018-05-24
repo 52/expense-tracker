@@ -31,8 +31,7 @@ module ExpenseTracker
         it "return the expense id" do
           post "/expenses", JSON.generate(expense)
 
-          response = JSON.parse last_response.body
-          expect(response).to include("expense_id" => 417)
+          expect_response include("expense_id" => 417)
         end
       end
 
@@ -54,8 +53,7 @@ module ExpenseTracker
         it "returns an error message" do
           post "/expenses", JSON.generate(expense)
 
-          response = JSON.parse last_response.body
-          expect(response).to include("error_message" => "Expense incomplete")
+          expect_response include("error_message" => "Expense incomplete")
         end
       end
     end

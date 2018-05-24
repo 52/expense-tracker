@@ -100,3 +100,10 @@ RSpec.configure do |config|
 
   config.filter_gems_from_backtrace "rack", "rack-test", "sequel", "sinatra"
 end
+
+# Assert the body of the response
+def expect_response expectation
+  response = JSON.parse last_response.body
+  expect(response).to expectation
+  response
+end

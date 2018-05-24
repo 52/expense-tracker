@@ -14,9 +14,7 @@ module ExpenseTracker
       post "/expenses", JSON.generate(expense)
       expect(last_response.status).to eq(200)
 
-      response = JSON.parse last_response.body
-      expect(response).to include("expense_id" => a_kind_of(Integer))
-
+      response = expect_response include("expense_id" => a_kind_of(Integer))
       expense.merge "id" => response["expense_id"]
     end
 
@@ -45,8 +43,7 @@ module ExpenseTracker
       get "expenses/2017-06-10"
       expect(last_response.status).to eq(200)
 
-      response = JSON.parse last_response.body
-      expect(response).to contain_exactly(coffee, zoo)
+      expect_response contain_exactly(coffee, zoo)
     end
   end
 end
