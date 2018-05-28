@@ -19,7 +19,6 @@ module ExpenseTracker
     end
 
     it "records submitted expenses" do
-      pending "need to persist expenses"
       # POST coffee, zoo, and groceries expenses
       coffee = post_expense(
         "payee"  => "Starbucks",
