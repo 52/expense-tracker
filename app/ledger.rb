@@ -6,7 +6,7 @@ module ExpenseTracker
   class Ledger
     def record expense
       %w(payee amount date).each do |key|
-        unless expense.key? key
+        unless expense.key?(key) || expense.key?(key.to_sym)
           error_message = "Invalid expense: \"#{key}\" is required"
           return RecordResult.new false, nil, error_message
         end
